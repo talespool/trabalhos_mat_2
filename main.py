@@ -24,8 +24,7 @@ class Matriz:
             raise IndexError("Índice fora dos limites da matriz")
 
 def criar_matriz_com_input():
-    linhas = int(input("Digite o número de linhas da matriz: "))
-    colunas = int(input("Digite o número de colunas da matriz: "))
+    linhas, colunas = map(int, input("Digite o número de linhas da matriz: ").split("x"))
     return [[0 for _ in range(colunas)] for _ in range(linhas)]
 
 
@@ -33,7 +32,7 @@ def preencher_matriz_com_input(matriz):
     print("\nPreenchendo a matriz:")
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
-            valor = int(input(f"Digite o valor para a posição ({i}, {j}): "))
+            valor = int(input(f"Digite o valor para a posição ({i+1}, {j+1}): "))
             matriz[i][j] = valor
     return matriz
 
