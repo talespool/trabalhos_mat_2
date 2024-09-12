@@ -48,7 +48,7 @@ class Matriz:
         print(f"O valor na posição ({linha+1}, {coluna+1}) é: {valor}")
 
 
-# Exemplo de uso
+
 if __name__ == "__main__":
     linhas = int(input("Digite o número de linhas: "))
     colunas = int(input("Digite o número de colunas: "))
