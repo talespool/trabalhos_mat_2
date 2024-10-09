@@ -1,0 +1,33 @@
+import math
+
+class Transformations:
+    # Translação em 2D
+    def translate2D(self, vector, dx, dy):
+        # Vetor original (x, y)
+        x, y = vector
+        # Aplicar a translação
+        x_new = x + dx
+        y_new = y + dy
+        return (x_new, y_new)
+
+    # Rotação em 2D
+    def rotation2D(self, vector, angle):
+        # Converter o ângulo para radianos
+        radians = math.radians(angle)
+        # Vetor original (x, y)
+        x, y = vector
+        # Aplicar a matriz de rotação
+        x_new = x * math.cos(radians) - y * math.sin(radians)
+        y_new = x * math.sin(radians) + y * math.cos(radians)
+        return (x_new, y_new)
+
+# Exemplo de uso
+trans = Transformations()
+
+# Translação de um vetor (3, 4) com dx = 2, dy = 3
+translated_vector = trans.translate2D((3, 4), 2, 3)
+print("Vetor transladado:", translated_vector)
+
+# Rotação de um vetor (3, 4) com ângulo de 90 graus
+rotated_vector = trans.rotation2D((3, 4), 90)
+print("Vetor rotacionado:", rotated_vector)
