@@ -6,106 +6,106 @@ import numpy as np
 class Transformations:
     # Translação (2D e 3D)
     def translate2D(self, vector, dx, dy):
-        matrix = Matriz.Matriz.preencher_matriz_com_input([[1, 0, dx],
+        matrix = Matriz.set_valor([[1, 0, dx],
                            [0, 1, dy],
                            [0, 0, 1]])
-        homogeneous_vector = Matriz.preencher_matriz_com_input([vector[0], vector[1], 1])
+        homogeneous_vector = Matriz.set_valor([vector[0], vector[1], 1])
         result = Calculos.dot(matrix, homogeneous_vector)
         return result[:2]  # Volta para o sistema cartesiano
 
     def translate3D(self, vector, dx, dy, dz):
-        matrix = Matriz.preencher_matriz_com_input([[1, 0, 0, dx],
+        matrix = Matriz.set_valor([[1, 0, 0, dx],
                                             [0, 1, 0, dy],
                                             [0, 0, 1, dz],
                                             [0, 0, 0, 1]])
-        homogeneous_vector = Matriz.preencher_matriz_com_input([vector[0], vector[1], vector[2], 1])
+        homogeneous_vector = Matriz.set_valor([vector[0], vector[1], vector[2], 1])
         result = Calculos.dot(matrix, homogeneous_vector)
         return result[:3]  # Volta para o sistema cartesiano
 
     # Rotação (2D e 3D)
     def rotation2D(self, vector, angle):
         radians = np.radians(angle)
-        matrix = Matriz.preencher_matriz_com_input([[np.cos(radians), -np.sin(radians)],
+        matrix = Matriz.set_valor([[np.cos(radians), -np.sin(radians)],
                                             [np.sin(radians), np.cos(radians)]])
         return Calculos.dot(matrix, vector)
 
     def rotation3DX(self, vector, angle):
         radians = np.radians(angle)
-        matrix = Matriz.preencher_matriz_com_input([[1, 0, 0],
+        matrix = Matriz.set_valor([[1, 0, 0],
                                             [0, np.cos(radians), -np.sin(radians)],
                                             [0, np.sin(radians), np.cos(radians)]])
         return Calculos.dot(matrix, vector)
 
     def rotation3DY(self, vector, angle):
         radians = np.radians(angle)
-        matrix = Matriz.preencher_matriz_com_input([[np.cos(radians), 0, np.sin(radians)],
+        matrix = Matriz.set_valor([[np.cos(radians), 0, np.sin(radians)],
                            [0, 1, 0],
                            [-np.sin(radians), 0, np.cos(radians)]])
         return Calculos.dot(matrix, vector)
 
     def rotation3DZ(self, vector, angle):
         radians = np.radians(angle)
-        matrix = Matriz.preencher_matriz_com_input([[np.cos(radians), -np.sin(radians), 0],
+        matrix = Matriz.set_valor([[np.cos(radians), -np.sin(radians), 0],
                            [np.sin(radians), np.cos(radians), 0],
                            [0, 0, 1]])
         return Calculos.dot(matrix, vector)
 
     # Reflexão (2D e 3D)
     def reflection2DX(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[1, 0], [0, -1]])
+        matrix = Matriz.set_valor([[1, 0], [0, -1]])
         return Calculos.dot(matrix, vector)
 
     def reflection2DY(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[-1, 0], [0, 1]])
+        matrix = Matriz.set_valor([[-1, 0], [0, 1]])
         return Calculos.dot(matrix, vector)
 
     def reflection3DX(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[1, 0, 0], [0, -1, 0], [0, 0, -1]])
+        matrix = Matriz.set_valor([[1, 0, 0], [0, -1, 0], [0, 0, -1]])
         return Calculos.dot(matrix, vector)
 
     def reflection3DY(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[-1, 0, 0], [0, 1, 0], [0, 0, -1]])
+        matrix = Matriz.set_valor([[-1, 0, 0], [0, 1, 0], [0, 0, -1]])
         return Calculos.dot(matrix, vector)
 
     def reflection3DZ(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[-1, 0, 0], [0, -1, 0], [0, 0, 1]])
+        matrix = Matriz.set_valor([[-1, 0, 0], [0, -1, 0], [0, 0, 1]])
         return Calculos.dot(matrix, vector)
 
     # Projeção (2D e 3D)
     def projection2DX(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[1, 0], [0, 0]])
+        matrix = Matriz.set_valor([[1, 0], [0, 0]])
         return Calculos.dot(matrix, vector)
 
     def projection2DY(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[0, 0], [0, 1]])
+        matrix = Matriz.set_valor([[0, 0], [0, 1]])
         return Calculos.dot(matrix, vector)
 
     def projection3DX(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[1, 0, 0], [0, 0, 0], [0, 0, 0]])
+        matrix = Matriz.set_valor([[1, 0, 0], [0, 0, 0], [0, 0, 0]])
         return Calculos.dot(matrix, vector)
 
     def projection3DY(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
+        matrix = Matriz.set_valor([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
         return Calculos.dot(matrix, vector)
 
     def projection3DZ(self, vector):
-        matrix = Matriz.preencher_matriz_com_input([[0, 0, 0], [0, 0, 0], [0, 0, 1]])
+        matrix = Matriz.set_valor([[0, 0, 0], [0, 0, 0], [0, 0, 1]])
         return Calculos.dot(matrix, vector)
 
     # Cisalhamento (Apenas 2D)
     def shearing(self, vector, kx, ky):
-        matrix = Matriz.preencher_matriz_com_input([[1, kx], [ky, 1]])
+        matrix = Matriz.set_valor([[1, kx], [ky, 1]])
         return Calculos.dot(matrix, vector)
 
 # Exemplo de Uso
 transform = Transformations()
 
 # Exemplo de translação em 2D
-vector_2d = Matriz.preencher_matriz_com_input([2, 3])
+vector_2d = Matriz.set_valor([2, 3])
 print("Translação 2D:", transform.translate2D(vector_2d, 5, -2))
 
 # Exemplo de rotação em 3D
-vector_3d = Matriz.preencher_matriz_com_input([1, 2, 3])
+vector_3d = Matriz.set_valor([1, 2, 3])
 print("Rotação em torno de Y (3D):", transform.rotation3DY(vector_3d, 90))
 
 # Exemplo de reflexão em X (2D)
