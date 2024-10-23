@@ -1,0 +1,98 @@
+from Transformations import Transformations
+
+def get_vector(dimension):
+  """Lê um vetor do usuário."""
+  components = []
+  for i in range(dimension):
+    components.append(float(input(f"Digite a componente {i+1}: ")))
+  return components
+
+def main():
+    transform = Transformations()
+
+    while True:
+        print("\nEscolha a transformação:")
+        print("1. Translação 2D")
+        print("2. Rotação em torno de Y (3D)")
+        print("3. Reflexão 2DX")
+        print("4. Projeção 3DZ")
+        print("5. Cisalhamento")
+        print("6. Reflexão 2DY")
+        print("7. Reflexão 3DX")
+        print("8. Reflexão 3DY")
+        print("9. Reflexão 3DZ")
+        print("10. Projeção 3DX")
+        print("11. Projeção 3DY")
+        print("12. Sair")
+        
+        choice = int(input("Digite o número da transformação: "))
+
+        if choice == 1:  # Translação 2D
+            vector = get_vector(2)
+            dx = float(input("Digite o deslocamento em x: "))
+            dy = float(input("Digite o deslocamento em y: "))
+            result = transform.translate2D(vector, dx, dy)
+            print(f"Vetor transladado: {result}")
+
+        elif choice == 2:  # Rotação em torno de Y (3D)
+            vector = get_vector(3)
+            angle = float(input("Digite o ângulo de rotação: "))
+            result = transform.rotation3DY(vector, angle)
+            print(f"Vetor rotacionado: {result}")
+
+        elif choice == 3:  # Reflexão 2DX
+            vector = get_vector(2)
+            result = transform.reflection2DX(vector)
+            print(f"Vetor refletido em X: {result}")
+
+        elif choice == 4:  # Projeção 3DZ
+            vector = get_vector(3)
+            result = transform.projection3DZ(vector)
+            print(f"Projeção no eixo Z: {result}")
+
+        elif choice == 5:  # Cisalhamento
+            vector = get_vector(2)
+            kx = float(input("Digite o fator de cisalhamento em x: "))
+            ky = float(input("Digite o fator de cisalhamento em y: "))
+            result = transform.shearing(vector, kx, ky)
+            print(f"Vetor cisalhado: {result}")
+
+        elif choice == 6:  # Reflexão 2DY
+            vector = get_vector(2)
+            result = transform.reflection2DY(vector)
+            print(f"Vetor refletido em Y: {result}")
+
+        elif choice == 7:  # Reflexão 3DX
+            vector = get_vector(3)
+            result = transform.reflection3DX(vector)
+            print(f"Vetor refletido em X (3D): {result}")
+
+        elif choice == 8:  # Reflexão 3DY
+            vector = get_vector(3)
+            result = transform.reflection3DY(vector)
+            print(f"Vetor refletido em Y (3D): {result}")
+
+        elif choice == 9:  # Reflexão 3DZ
+            vector = get_vector(3)
+            result = transform.reflection3DZ(vector)
+            print(f"Vetor refletido em Z (3D): {result}")
+
+        elif choice == 10:  # Projeção 3DX
+            vector = get_vector(3)
+            result = transform.projection3DX(vector)
+            print(f"Projeção no eixo X (3D): {result}")
+
+        elif choice == 11:  # Projeção 3DY
+            vector = get_vector(3)
+            result = transform.projection3DY(vector)
+            print(f"Projeção no eixo Y (3D): {result}")
+
+        elif choice == 12:  # Sair
+            print("Encerrando o programa...")
+            break
+
+        else:
+            print("Opção inválida. Tente novamente.")
+    
+if __name__ == "__main__":
+  main()
