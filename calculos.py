@@ -19,20 +19,22 @@ class Calculos:
         
         return matriz_resultante
 
-    def multiplicacao(self):
-        """Multiplica duas matrizes e retorna o resultado."""
-        if self.matriz1.colunas != self.matriz2.linhas:
-            raise ValueError("O número de colunas da primeira matriz deve ser igual ao número de linhas da segunda matriz para multiplicação.")
+    def multiplicacao(matriz, vetor):
+        # Verifica se o número de colunas da matriz é igual ao tamanho do vetor
+        if len(matriz[0]) != len(vetor):
+            raise ValueError("O número de colunas da matriz deve ser igual ao tamanho do vetor.")
 
-        matriz_resultante = Matriz(self.matriz1.linhas, self.matriz2.colunas)
-        for i in range(self.matriz1.linhas):
-            for j in range(self.matriz2.colunas):
-                valor_multiplicacao = 0
-                for k in range(self.matriz1.colunas):
-                    valor_multiplicacao += self.matriz1.get_valor(i, k) * self.matriz2.get_valor(k, j)
-                matriz_resultante.set_valor(i, j, valor_multiplicacao)
-        
-        return matriz_resultante
+        # Inicializa o vetor resultado com zeros
+        resultado = [0] * len(matriz)
+
+        # Realiza a multiplicação da matriz pelo vetor
+        for i in range(len(matriz)):  # Percorre cada linha da matriz
+            soma = 0
+            for j in range(len(vetor)):  # Percorre cada coluna da linha
+                soma += matriz[i][j] * vetor[j]  # Multiplica e soma os valores
+            resultado[i] = soma  # Armazena o resultado no vetor
+
+        return resultado
     
     def transpose(self):
         """Retorna a transposta de uma matriz."""
