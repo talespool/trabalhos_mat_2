@@ -3,11 +3,10 @@ from Calculos import Calculos
 import numpy as np
 
  
-def matrix_dot(self, matriz1, matriz2):
-    calculos = Calculos(matriz1, matriz2)  # Instancia corretamente Calculos
-    return calculos.dot() # Chama o método dot sem passar parâmetros
 
 class Transformations:
+    
+    
     
     # Translação (2D e 3D)
     def translate2D(self, vector, dx, dy):
@@ -15,7 +14,7 @@ class Transformations:
                   [0, 1, dy],
                   [0, 0, 1]]
         homogeneous_vector = [vector[0], vector[1], 1]
-        result = matrix_dot(matrix, homogeneous_vector)
+        result = Calculos.multiplicacao(matrix, homogeneous_vector)
         return result[:2]  # Retorna para o sistema cartesiano 2D
 
     def translate3D(self, vector, dx, dy, dz):
@@ -24,7 +23,7 @@ class Transformations:
                   [0, 0, 1, dz],
                   [0, 0, 0, 1]]
         homogeneous_vector = [vector[0], vector[1], vector[2], 1]
-        result = matrix_dot(matrix, homogeneous_vector)
+        result = Calculos.multiplicacao(matrix, homogeneous_vector)
         return result[:3]  # Retorna para o sistema cartesiano 3D
 
     # Rotação (2D e 3D)
@@ -32,75 +31,76 @@ class Transformations:
         radians = np.radians(angle)
         matrix = [[np.cos(radians), -np.sin(radians)],
                   [np.sin(radians), np.cos(radians)]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def rotation3DX(self, vector, angle):
         radians = np.radians(angle)
         matrix = [[1, 0, 0],
                   [0, np.cos(radians), -np.sin(radians)],
                   [0, np.sin(radians), np.cos(radians)]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def rotation3DY(self, vector, angle):
         radians = np.radians(angle)
         matrix = [[np.cos(radians), 0, np.sin(radians)],
                   [0, 1, 0],
                   [-np.sin(radians), 0, np.cos(radians)]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def rotation3DZ(self, vector, angle):
         radians = np.radians(angle)
         matrix = [[np.cos(radians), -np.sin(radians), 0],
                   [np.sin(radians), np.cos(radians), 0],
                   [0, 0, 1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     # Reflexão (2D e 3D)
     def reflection2DX(self, vector):
         matrix = [[1, 0], [0, -1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def reflection2DY(self, vector):
         matrix = [[-1, 0], [0, 1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def reflection3DX(self, vector):
         matrix = [[1, 0, 0], [0, -1, 0], [0, 0, -1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def reflection3DY(self, vector):
         matrix = [[-1, 0, 0], [0, 1, 0], [0, 0, -1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def reflection3DZ(self, vector):
         matrix = [[-1, 0, 0], [0, -1, 0], [0, 0, 1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     # Projeção (2D e 3D)
     def projection2DX(self, vector):
         matrix = [[1, 0], [0, 0]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def projection2DY(self, vector):
         matrix = [[0, 0], [0, 1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def projection3DX(self, vector):
         matrix = [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def projection3DY(self, vector):
         matrix = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     def projection3DZ(self, vector):
         matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 1]]
-        return matrix_dot(matrix, vector)
+        return Calculos.multiplicacao(matrix, vector)
 
     # Cisalhamento (Apenas 2D)
     def shearing(self, vector, kx, ky):
-        matrix = [[1, kx], [ky, 1]]
-        return matrix_dot(matrix, vector)
+        matrix = [[1, kx],
+                  [0, 1]]
+        return Calculos.multiplicacao(matrix, vector)
 
 # Exemplo de Uso
 
